@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QuizBlitz – Play</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+
+<!-- ═══════════════════ LANDING ════════════════════ -->
+<div id="screen-landing" class="screen active">
+  <div class="card center-card">
+    <h1 class="logo">⚡ QuizBlitz</h1>
+    <p class="subtitle">Real-time multiplayer quiz game</p>
+    <div class="btn-group">
+      <button class="btn btn-primary" onclick="showScreen('screen-join')">Join a Game</button>
+      <button class="btn btn-secondary" onclick="window.location='/host.html'">Host a Game</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ JOIN ════════════════════ -->
+<div id="screen-join" class="screen">
+  <div class="card center-card">
+    <button class="back-btn" onclick="showScreen('screen-landing')">← Back</button>
+    <h2>Join Game</h2>
+    <input id="inp-pin" class="inp" type="text" maxlength="6" placeholder="Enter Game PIN" inputmode="numeric" />
+    <input id="inp-name" class="inp" type="text" maxlength="20" placeholder="Your Nickname" />
+    <button class="btn btn-primary" onclick="joinGame()">Join!</button>
+    <p id="join-error" class="error-msg"></p>
+  </div>
+</div>
+
+<!-- ═══════════════════ LOBBY (waiting room) ════════════════════ -->
+<div id="screen-lobby" class="screen">
+  <div class="lobby-header">
+    <p class="label">Game PIN</p>
+    <div class="pin-display" id="lobby-pin">──────</div>
+    <p id="lobby-welcome" class="subtitle"></p>
+  </div>
+  <div class="player-grid" id="player-grid"></div>
+  <p class="label" style="text-align:center;margin-top:1rem">Waiting for host to start…</p>
+</div>
+
+<!-- ═══════════════════ QUESTION ════════════════════ -->
+<div id="screen-question" class="screen">
+  <div class="question-header">
+    <div class="q-meta">
+      <span id="q-index">1/10</span>
+      <div class="timer-wrap">
+        <svg viewBox="0 0 36 36" class="timer-ring">
+          <circle class="timer-ring-bg" cx="18" cy="18" r="15.9"/>
+          <circle id="timer-arc" class="timer-ring-arc" cx="18" cy="18" r="15.9"/>
+        </svg>
+        <span id="timer-val">20</span>
+      </div>
+    </div>
+    <h2 id="q-text" class="question-text"></h2>
+  </div>
+  <div class="answer-grid" id="answer-grid"></div>
+</div>
+
+<!-- ═══════════════════ ANSWER RESULT ════════════════════ -->
+<div id="screen-answer-result" class="screen">
+  <div class="result-card" id="result-card">
+    <div id="result-icon" class="result-icon"></div>
+    <p id="result-label" class="result-label"></p>
+    <p id="result-points" class="result-points"></p>
+    <p id="result-total" class="result-total"></p>
+  </div>
+</div>
+
+<!-- ═══════════════════ QUESTION END (leaderboard) ════════════════════ -->
+<div id="screen-q-end" class="screen">
+  <div class="card center-card">
+    <h2>📊 Leaderboard</h2>
+    <ol id="q-end-board" class="leaderboard"></ol>
+    <p class="label" style="margin-top:1rem">Waiting for next question…</p>
+  </div>
+</div>
+
+<!-- ═══════════════════ GAME OVER ════════════════════ -->
+<div id="screen-gameover" class="screen">
+  <div class="card center-card">
+    <h2>🏆 Final Results</h2>
+    <ol id="final-board" class="leaderboard"></ol>
+    <button class="btn btn-primary" style="margin-top:1.5rem" onclick="showScreen('screen-landing')">Play Again</button>
+  </div>
+</div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/play.js"></script>
+</body>
+</html>

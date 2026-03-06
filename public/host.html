@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QuizBlitz – Host</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+
+<!-- ═══════════════════ CREATE QUIZ ════════════════════ -->
+<div id="screen-create" class="screen active">
+  <div class="card create-card">
+    <a class="back-btn" href="/">← Back</a>
+    <h2>Create Your Quiz</h2>
+
+    <div id="questions-container"></div>
+
+    <button class="btn btn-outline" onclick="addQuestion()">+ Add Question</button>
+
+    <hr class="divider" />
+
+    <button class="btn btn-primary" onclick="createGame()">🚀 Create Game</button>
+    <p id="create-error" class="error-msg"></p>
+  </div>
+</div>
+
+<!-- ═══════════════════ LOBBY ════════════════════ -->
+<div id="screen-lobby" class="screen">
+  <div class="lobby-header">
+    <p class="label">Game PIN</p>
+    <div class="pin-display" id="host-pin">──────</div>
+    <p class="subtitle">Share this PIN with players!</p>
+    <p class="label" id="player-count">0 players joined</p>
+  </div>
+  <div class="player-grid" id="host-player-grid"></div>
+  <button class="btn btn-primary" style="margin-top:2rem" onclick="startGame()">▶ Start Game</button>
+  <p id="start-error" class="error-msg"></p>
+</div>
+
+<!-- ═══════════════════ QUESTION VIEW (host sees answer) ════════════════════ -->
+<div id="screen-question" class="screen">
+  <div class="question-header">
+    <div class="q-meta">
+      <span id="host-q-index">1/10</span>
+      <div class="timer-wrap">
+        <svg viewBox="0 0 36 36" class="timer-ring">
+          <circle class="timer-ring-bg" cx="18" cy="18" r="15.9"/>
+          <circle id="host-timer-arc" class="timer-ring-arc" cx="18" cy="18" r="15.9"/>
+        </svg>
+        <span id="host-timer-val">20</span>
+      </div>
+    </div>
+    <h2 id="host-q-text" class="question-text"></h2>
+  </div>
+  <div class="answer-grid" id="host-answer-grid"></div>
+  <p class="label" style="text-align:center;margin-top:1rem" id="host-answer-count">0 answers</p>
+</div>
+
+<!-- ═══════════════════ QUESTION END ════════════════════ -->
+<div id="screen-q-end" class="screen">
+  <div class="card center-card">
+    <h2>📊 Leaderboard</h2>
+    <ol id="host-q-end-board" class="leaderboard"></ol>
+    <button class="btn btn-primary" style="margin-top:1.5rem" onclick="nextQuestion()">Next Question ▶</button>
+  </div>
+</div>
+
+<!-- ═══════════════════ GAME OVER ════════════════════ -->
+<div id="screen-gameover" class="screen">
+  <div class="card center-card">
+    <h2>🏆 Final Results</h2>
+    <ol id="host-final-board" class="leaderboard"></ol>
+    <button class="btn btn-primary" style="margin-top:1.5rem" onclick="window.location='/'">Home</button>
+  </div>
+</div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/host.js"></script>
+</body>
+</html>
