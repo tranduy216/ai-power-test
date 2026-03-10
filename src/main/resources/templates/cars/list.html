@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Car Management</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+</head>
+<body>
+<div class="container">
+    <nav class="navbar">
+        <div class="nav-brand">🚗 Car Manager</div>
+        <div class="nav-right">
+            <span class="welcome-text">Welcome, <span th:text="${fullName}">User</span></span>
+            <a th:href="@{/logout}" class="btn btn-outline">Logout</a>
+        </div>
+    </nav>
+
+    <div class="content">
+        <div class="header-row">
+            <h2>Car List</h2>
+            <a th:href="@{/cars/add}" class="btn btn-primary">+ Add Car</a>
+        </div>
+
+        <form method="get" th:action="@{/cars}" class="search-form">
+            <input type="text" name="search" th:value="${search}" placeholder="Search by name, brand, year, or color..."/>
+            <button type="submit" class="btn btn-primary">Search</button>
+            <a th:href="@{/cars}" class="btn btn-outline">Clear</a>
+        </form>
+
+        <div th:if="${#lists.isEmpty(cars)}" class="empty-state">
+            <p>No cars found.</p>
+        </div>
+
+        <table th:unless="${#lists.isEmpty(cars)}" class="data-table">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Brand</th>
+                <th>Year</th>
+                <th>Color</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="car, iter : ${cars}">
+                <td th:text="${iter.index + 1}"></td>
+                <td th:text="${car.name}"></td>
+                <td th:text="${car.brand}"></td>
+                <td th:text="${car.year}"></td>
+                <td th:text="${car.color}"></td>
+                <td class="actions">
+                    <a th:href="@{/cars/edit/{id}(id=${car.id})}" class="btn btn-small btn-edit">Edit</a>
+                    <a th:href="@{/cars/delete/{id}(id=${car.id})}" class="btn btn-small btn-delete"
+                       onclick="return confirm('Are you sure you want to delete this car?')">Delete</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

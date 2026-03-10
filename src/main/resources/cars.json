@@ -1,0 +1,22 @@
+[
+  { "id": 1, "name": "Camry", "brand": "Toyota", "year": 2023, "color": "White" },
+  { "id": 2, "name": "Civic", "brand": "Honda", "year": 2022, "color": "Black" },
+  { "id": 3, "name": "Model 3", "brand": "Tesla", "year": 2024, "color": "Red" },
+  { "id": 4, "name": "Mustang", "brand": "Ford", "year": 2021, "color": "Blue" },
+  { "id": 5, "name": "3 Series", "brand": "BMW", "year": 2023, "color": "Silver" },
+  { "id": 6, "name": "C-Class", "brand": "Mercedes", "year": 2022, "color": "Black" },
+  { "id": 7, "name": "A4", "brand": "Audi", "year": 2023, "color": "Gray" },
+  { "id": 8, "name": "Corolla", "brand": "Toyota", "year": 2021, "color": "Blue" },
+  { "id": 9, "name": "Accord", "brand": "Honda", "year": 2024, "color": "White" },
+  { "id": 10, "name": "Model Y", "brand": "Tesla", "year": 2023, "color": "Black" },
+  { "id": 11, "name": "Tucson", "brand": "Hyundai", "year": 2022, "color": "Green" },
+  { "id": 12, "name": "CX-5", "brand": "Mazda", "year": 2023, "color": "Red" },
+  { "id": 13, "name": "Outback", "brand": "Subaru", "year": 2021, "color": "Silver" },
+  { "id": 14, "name": "Altima", "brand": "Nissan", "year": 2022, "color": "White" },
+  { "id": 15, "name": "Sorento", "brand": "Kia", "year": 2024, "color": "Gray" },
+  { "id": 16, "name": "Golf", "brand": "Volkswagen", "year": 2023, "color": "Blue" },
+  { "id": 17, "name": "Wrangler", "brand": "Jeep", "year": 2022, "color": "Yellow" },
+  { "id": 18, "name": "RAV4", "brand": "Toyota", "year": 2024, "color": "Black" },
+  { "id": 19, "name": "CR-V", "brand": "Honda", "year": 2023, "color": "White" },
+  { "id": 20, "name": "Sportage", "brand": "Kia", "year": 2021, "color": "Orange" }
+]
