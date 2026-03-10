@@ -2,16 +2,15 @@ package com.carmanager.config
 
 import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.security.Keys
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Component
 import java.util.Date
 import javax.crypto.SecretKey
 
 @Component
-class JwtUtil {
+class JwtUtil(@Value("\${jwt.secret}") secret: String) {
 
-    private val secretKey: SecretKey = Keys.hmacShaKeyFor(
-        "car-manager-secret-key-must-be-at-least-256-bits-long!!".toByteArray()
-    )
+    private val secretKey: SecretKey = Keys.hmacShaKeyFor(secret.toByteArray())
     private val expirationMs: Long = 86400000 // 24 hours
 
     fun generateToken(username: String, fullName: String): String {
