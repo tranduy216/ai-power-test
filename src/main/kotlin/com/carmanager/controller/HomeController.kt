@@ -8,6 +8,6 @@ class HomeController {
 
     @GetMapping("/")
     fun home(): String {
-        return "redirect:/cars"
+        return "index"
     }
 }
