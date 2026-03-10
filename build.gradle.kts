@@ -23,6 +23,8 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
+    implementation("org.webjars:bootstrap:5.3.3")
+    implementation("org.webjars.npm:bootstrap-icons:1.11.3")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 

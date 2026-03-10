@@ -11,7 +11,7 @@ class AuthInterceptor : HandlerInterceptor {
     override fun preHandle(request: HttpServletRequest, response: HttpServletResponse, handler: Any): Boolean {
         val path = request.requestURI
         // Allow access to login page and static resources
-        if (path == "/login" || path.startsWith("/css/") || path.startsWith("/js/")) {
+        if (path == "/login" || path.startsWith("/css/") || path.startsWith("/js/") || path.startsWith("/webjars/")) {
             return true
         }
         val session = request.getSession(false)
