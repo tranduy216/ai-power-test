@@ -1,17 +1,18 @@
-# ⚡ QuizBlitz – Kahoot-like Real-time Quiz Game
+# 🚗 Car Manager – Admin Page
 
-A fully-featured multiplayer quiz game inspired by Kahoot, built with **Node.js**, **Express**, and **Socket.io**.
+A simple car management admin page built with **Kotlin Spring Boot** and **Thymeleaf** (MVC pattern).
 
 ---
 
 ## Features
 
-- 🎮 **Host a game** – create custom quizzes with multiple-choice questions
-- 🙋 **Players join** with a 6-digit PIN and a nickname
-- ⏱ **Live countdown timer** per question
-- 🎯 **Scoring** – faster correct answers earn more points
-- 📊 **Live leaderboard** after each question
-- 🏆 **Final results** screen at the end
+- 🔐 **Login required** – session-based authentication
+- 📋 **Car list** – view all cars in a table
+- ➕ **Add car** – create new car entries
+- ✏️ **Edit car** – update existing car details
+- 🗑️ **Delete car** – remove cars with confirmation
+- 🔍 **Search** – filter cars by name, brand, year, or color
+- 💾 **JSON storage** – no database required, data stored in JSON files
 
 ---
 
@@ -19,65 +20,45 @@ A fully-featured multiplayer quiz game inspired by Kahoot, built with **Node.js*
 
 | Layer | Technology |
 |---|---|
-| Runtime | Node.js (≥ 16) |
-| Web framework | Express 4 |
-| Real-time | Socket.io 4 |
-| Frontend | Vanilla HTML/CSS/JS |
+| Language | Kotlin |
+| Framework | Spring Boot 3.2 |
+| Template Engine | Thymeleaf |
+| Build Tool | Gradle (Kotlin DSL) |
+| Storage | JSON files |
 
 ---
 
 ## Local Development
 
+### Prerequisites
+
+- Java 17+
+- Gradle 8+
+
+### Running
+
 ```bash
-# 1. Install dependencies
-npm install
+# Build and run
+gradle bootRun
 
-# 2. Start the development server (auto-reload)
-npm run dev
-
-# 3. Or start normally
-npm start
+# Or build a JAR and run it
+gradle bootJar
+java -jar build/libs/car-manager-0.0.1-SNAPSHOT.jar
 ```
 
-Open **http://localhost:3000** in your browser.
+Open **http://localhost:8080** in your browser.
 
 ---
 
-## How to Play
+## Test Accounts
 
-### Hosting a game
-1. Go to `http://localhost:3000` and click **Host a Game**.
-2. Add questions (text, four answer options, pick the correct one, set a time limit).
-3. Click **Create Game** – you'll get a **6-digit PIN**.
-4. Share the PIN with players, then click **▶ Start Game**.
-5. After each question, review the leaderboard and click **Next Question**.
-
-### Joining a game
-1. Go to `http://localhost:3000` and click **Join a Game**.
-2. Enter the PIN and choose a nickname.
-3. Wait in the lobby until the host starts.
-4. Tap an answer before the timer runs out – faster = more points!
-
----
-
-## Deploying to a Free Host
-
-### Render.com (recommended)
-
-1. Push this repository to GitHub.
-2. Sign up at [render.com](https://render.com) (free tier available).
-3. Click **New → Web Service** and connect your GitHub repo.
-4. Set the following:
-   - **Build Command**: `npm install`
-   - **Start Command**: `npm start`
-   - **Environment**: Node
-5. Click **Deploy** – Render will give you a public URL.
-
-### Railway.app
-
-1. Sign up at [railway.app](https://railway.app).
-2. Click **New Project → Deploy from GitHub repo**.
-3. Select the repository – Railway auto-detects Node.js and runs `npm start`.
+| Username | Password | Full Name |
+|---|---|---|
+| admin | admin123 | Administrator |
+| john | john123 | John Doe |
+| jane | jane123 | Jane Smith |
+| mike | mike123 | Mike Johnson |
+| sarah | sarah123 | Sarah Williams |
 
 ---
 
@@ -85,16 +66,34 @@ Open **http://localhost:3000** in your browser.
 
 ```
 .
-├── server.js           # Express + Socket.io server (game logic)
-├── package.json
-└── public/
-    ├── index.html      # Player landing / join page
-    ├── host.html       # Host: create & run games
-    ├── css/
-    │   └── style.css   # All styles
-    └── js/
-        ├── play.js     # Player client logic
-        └── host.js     # Host client logic
+├── build.gradle.kts
+├── settings.gradle.kts
+└── src/main/
+    ├── kotlin/com/carmanager/
+    │   ├── CarManagerApplication.kt
+    │   ├── config/
+    │   │   ├── AuthInterceptor.kt
+    │   │   └── WebConfig.kt
+    │   ├── controller/
+    │   │   ├── AuthController.kt
+    │   │   ├── CarController.kt
+    │   │   └── HomeController.kt
+    │   ├── model/
+    │   │   ├── Account.kt
+    │   │   └── Car.kt
+    │   └── repository/
+    │       ├── AccountRepository.kt
+    │       └── CarRepository.kt
+    └── resources/
+        ├── application.properties
+        ├── cars.json
+        ├── accounts.json
+        ├── static/css/style.css
+        └── templates/
+            ├── login.html
+            └── cars/
+                ├── list.html
+                └── form.html
 ```
 
 ---

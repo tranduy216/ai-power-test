@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title th:text="${action} + ' Car - Car Manager'">Car Form</title>
+    <link href="/webjars/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="/webjars/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css" rel="stylesheet"/>
+</head>
+<body class="bg-light">
+<nav class="navbar navbar-dark bg-primary mb-4">
+    <div class="container">
+        <a class="navbar-brand" href="/cars"><i class="bi bi-car-front-fill"></i> Car Manager</a>
+        <a th:href="@{/cars}" class="btn btn-outline-light btn-sm"><i class="bi bi-arrow-left"></i> Back to List</a>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-8 col-lg-6">
+            <div class="card shadow-sm">
+                <div class="card-header bg-white">
+                    <h5 class="mb-0" th:text="${action} + ' Car'">Car Form</h5>
+                </div>
+                <div class="card-body">
+                    <form method="post"
+                          th:action="${action == 'Add'} ? @{/cars/add} : @{/cars/edit/{id}(id=${car.id})}"
+                          th:object="${car}">
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Car Name</label>
+                            <input type="text" class="form-control" id="name" th:field="*{name}" required placeholder="e.g. Camry"/>
+                        </div>
+                        <div class="mb-3">
+                            <label for="brand" class="form-label">Brand</label>
+                            <input type="text" class="form-control" id="brand" th:field="*{brand}" required placeholder="e.g. Toyota"/>
+                        </div>
+                        <div class="mb-3">
+                            <label for="year" class="form-label">Year</label>
+                            <input type="number" class="form-control" id="year" th:field="*{year}" required min="1900" max="2030" placeholder="e.g. 2024"/>
+                        </div>
+                        <div class="mb-3">
+                            <label for="color" class="form-label">Color</label>
+                            <input type="text" class="form-control" id="color" th:field="*{color}" required placeholder="e.g. White"/>
+                        </div>
+                        <div class="d-flex gap-2">
+                            <button type="submit" class="btn btn-primary" th:text="${action} + ' Car'">Save</button>
+                            <a th:href="@{/cars}" class="btn btn-outline-secondary">Cancel</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/webjars/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,7 @@
+[
+  { "username": "admin", "password": "admin123", "fullName": "Administrator" },
+  { "username": "john", "password": "john123", "fullName": "John Doe" },
+  { "username": "jane", "password": "jane123", "fullName": "Jane Smith" },
+  { "username": "mike", "password": "mike123", "fullName": "Mike Johnson" },
+  { "username": "sarah", "password": "sarah123", "fullName": "Sarah Williams" }
+]
